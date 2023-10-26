@@ -1,0 +1,403 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons';
+@import '~vue-multiselect/dist/vue-multiselect.min.css';
+
+@import 'w3.css';
+// @font-face {
+//     font-family: 'Lato';
+//     src: url(../tem/fonts/Lato-Bold.ttf);
+// }
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../tem/fonts/Montserrat-Black.ttf);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: "Lato" !important;
+    // font-family: "Nunito", sans-serif;
+    // body {
+    // }
+}
+
+.navbodyfloat {
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
+    // color: #5a5a5a;
+    background: black;
+}
+
+html {
+    background: black;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    z-index: 10001;
+    top: 0px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+// body {
+//     display: flex;
+//     align-items: center;
+//     padding-top: 40px;
+//     padding-bottom: 40px;
+//     background-color: #f5f5f5;
+// }
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    background: #343434db;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.bg1 {
+    background: #F37F7D !important;
+    color: white;
+}
+
+.bg1:hover {
+    color: white;
+}
+
+.br20 {
+    border-radius: 20px;
+}
+
+.fondo1 {
+    background: rgb(128, 128, 128);
+    background: linear-gradient(180deg, rgba(128, 128, 128, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.bg-black {
+    background-color: #000000 !important;
+}
+
+.bg-nav {
+    // background-color: #000000 !important;
+    background-color: #00000063 !important;
+}
+
+.bg2 {
+    background-color: #888888 !important;
+    padding: 10px 0px;
+}
+
+.btn {
+    font-family: "Montserrat" !important;
+    // font-size: 19px !important;
+    color: #fff;
+}
+
+.btn-primary {
+    font-family: "Montserrat" !important;
+    font-size: 19px;
+    color: #fff;
+    background-color: #F37F7D;
+    border-color: #F37F7D;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #F37F7D;
+    border-color: #F37F7D;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    background-color: #F37F7D;
+    border-color: #F37F7D;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    background-color: #F37F7D;
+    border-color: #F37F7D;
+}
+
+.titleh1 {
+    font-family: "Montserrat" !important;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+// table
+thead {
+    background: #343434;
+    color: white;
+    font-size: 20px;
+}
+
+.table thead th {
+    color: white;
+    font-size: 20px;
+    border-bottom: 2px solid #606060;
+}
+
+.table-bordered th,
+.table-bordered td {
+    color: white;
+    font-size: 20px;
+    border: 1px solid #606060;
+}
+
+.table th,
+.table td {
+    color: white;
+    font-size: 20px;
+    border-top: 1px solid #606060;
+}
+
+.modal-content {
+    background: #2E2E2E;
+    color: white;
+    font-weight: normal;
+    font-size: 21px;
+}
+
+.modal-title {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.modal-header .close {
+    color: white;
+    font-size: 40px;
+}
+
+.menuuser {
+    color: white;
+    font-size: 40px;
+}
+
+.navbar-collapse {
+    flex-grow: initial;
+}
+
+label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.hservicios {
+    background-color: #0D0D0D;
+    font-size: 22px;
+    font-family: 'Lato';
+    font-weight: 400;
+    padding: 10px
+}
+
+.listservicio {
+    background-color: transparent;
+    position: fixed;
+}
+
+.liservicio {
+    padding: 5px 10px;
+    background-color: #6F6F6F;
+}
+
+.servicioimgbg {
+    background: #61193f54;
+    border: 10px #F8BA97 solid;
+}
+
+.checkservicios {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 1;
+}
+
+.checkpromocion {
+    // width: 25px;
+    // height: 25px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    z-index: 1;
+}
+
+.checkextra {
+    // width: 25px;
+    // height: 25px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    z-index: 1;
+}
+
+.modal-fullscreen {
+    width: 100vw !important;
+    max-width: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.cardpoint {
+    cursor: pointer;
+}
+
+#asignacionModalCenter {
+    background: #2e2e2ec2 !important;
+}
+
+.modal {
+    overflow-y: auto
+}
+
+.bg-confirm {
+    background: #54CE4F;
+    color: white;
+}
+
+// checkbox
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+// fin checkbox
+
+.icon-danger{
+    color: red;
+    font-size: 100px;
+}
