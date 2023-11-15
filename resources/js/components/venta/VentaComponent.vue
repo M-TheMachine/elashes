@@ -7,7 +7,7 @@
             <div class="col py-3">
                 <form @submit.prevent="getResults()">
                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Escribe un servicio o el nombre de un cliente..." v-model="textbuscar" aria-label="" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Escribe un servicio o el nombre de u   n cliente..." v-model="textbuscar" aria-label="" aria-describedby="button-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-primary" type="submit" id="button-addon2">
                                 <i class="bi bi-search"></i>
