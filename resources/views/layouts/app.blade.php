@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head class="bg-black">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,12 +28,12 @@
     </div>
 </body>
 @else
-<body class="bg-black  {{ Route::has('login') ? 'navbodyfloat' : '' }}">
-    <div id="app" class="w-auto h-75 bg-black">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid bg-black">
+<body class="fondo1 {{ Route::has('login') ? 'navbodyfloat' : '' }}">
+    <div id="app" class="w-auto h-75">
+            <nav class="navbar navbar-expand-md navbar-light fixed-top bg-nav shadow-sm">
+                <div class="container">
                     @if (!request()->is('home'))
-                        <span style="font-size:30px;cursor:pointer" class="text-white" onclick="openNav()">&#9776; Menú</span>
+                        <span style="font-size:30px;cursor:pointer" class="text-white" onclick="openNav()">&#9776; MENU</span>
                     @endif
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         <img class="img-fluid" src="{{ asset('images/logo.png') }}" width="100px" alt="">
@@ -60,7 +60,7 @@
                                 @endif
 
                                 @if (Route::has('register'))
-                                    <li class="nav-item ">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
@@ -97,7 +97,7 @@
         </main>
     </div>
     @if (Auth::check())
-        <div class="modal fade bg-black" id="sucursalModalCenter" tabindex="-1" role="dialog" aria-labelledby="sucursalModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="sucursalModalCenter" tabindex="-1" role="dialog" aria-labelledby="sucursalModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form method="POST" action="{{ url('selectsucursal') }}">
@@ -157,12 +157,6 @@
             });
         </script> --}}
     @endif
-    
-    
-      
-    
-    
-    
 
 
     <div id="myNav" class="overlay">
@@ -170,36 +164,17 @@
         <div class="overlay-content">
             <div class="container d-flex">
                 <div class="row justify-content-center m-auto">
-                
-                        <ul class="navbar-nav">
-       
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ url('ventas') }}">Ventas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('pagos') }}">Pagos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('recordatorios') }}">Recordatorios</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{{ url('nuevaventa') }}">Nueva venta</a>
-        </li>
-      </ul>
                     @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin')
-                       
-
-                            <!-- <div class="col-md-4 mt-4">
+                        <div class="col-md-4 mt-4">
 
                             <a href="{{ url('clientes') }}">
-                              
-                                    <H1>Clientes</H1>
-                                    
-                                    {{-- <i class="" style="font-size: 120px;"></i>
-                                    <div class="">
-                                    <h5 class="">hola</h5>
-                                 
-                                </div> --}}
+                                <div class="card br20">
+                                    <img src="{{ asset('images/1.jpg') }}" class="w-100 br20" alt="">
+                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
+                                    <div class="card-img-overlay">
+                                    <h5 class="card-title">CLIENTES</h5>
+                                    </div> --}}
+                                </div>
                             </a>
                         </div>
                     @endif
@@ -207,11 +182,11 @@
 
                         <div class="col-md-4 mt-4">
                             <a href="{{ url('servicios') }}">
-                                <h1 class="">SERVICIOS</h1>
-                                <div class="">
-                                   {{-- <i class="" style="font-size: 120px;"></i>
-                                    <div class="">
-                                    <h5 class="">SERVICIOS</h5>
+                                <div class="card br20">
+                                    <img src="{{ asset('images/2.jpg') }}" class="w-100 br20" alt="">
+                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
+                                    <div class="card-img-overlay">
+                                    <h5 class="card-title">SERVICIOS</h5>
                                     </div> --}}
                                 </div>
                             </a>
@@ -219,11 +194,11 @@
 
                         <div class="col-md-4 mt-4">
                             <a href="{{ url('categorias') }}">
-                                <h1 class="">CATEGORÍAS</h1>
-                                <div class="">
-                                    {{-- <i class="" style="font-size: 120px;"></i>
-                                    <div class="">
-                                    <h5 class="">CATEGORÍAS</h5>
+                                <div class="card br20">
+                                    <img src="{{ asset('images/3.jpg') }}" class="w-100 br20" alt="">
+                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
+                                    <div class="card-img-overlay">
+                                    <h5 class="card-title">CATEGORÍAS</h5>
                                     </div> --}}
                                 </div>
                             </a>
@@ -278,10 +253,10 @@
                         <div class="col-md-4 mt-4">
                             <a href="{{ url('ventas') }}">
                                 <div class="card br20">
-                                    <img src="{{ asset('') }}" class="w-100 br20" alt="">
+                                    <img src="{{ asset('images/7.jpg') }}" class="w-100 br20" alt="">
                                     {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
                                     <div class="card-img-overlay">
-                                    <h5 class="card-title">Ventas</h5>
+                                    <h5 class="card-title">REPORTES</h5>
                                     </div> --}}
                                 </div>
                             </a>
@@ -340,8 +315,12 @@
                     </div> --}}
                 </div>
             </div>
-            -->
- 
+          {{-- <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a> --}}
+        </div>
+      </div>
 
     <script>
         function openNav() {
