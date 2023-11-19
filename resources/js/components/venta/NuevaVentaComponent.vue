@@ -7,7 +7,7 @@
                     <!-- <label class="typo__label" for="ajax">Buscar cliente</label> -->
                     <multiselect  @input="observacioncliente()" v-model="selectcliente" :custom-label="nombreCiConCelular" id="ajax" label="nombre" track-by="id" placeholder="Escribe el Nombre, CI o celular..." open-direction="bottom" :options="clientes" :multiple="false" :searchable="true" :loading="isLoading" :internal-search="false" :clear-on-select="false" :close-on-select="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false" :hide-selected="false" @search-change="asyncFind">
                         <template slot="tag" slot-scope="{ option, remove }"><span class="custom__tag"><span>{{ option }}</span><span class="custom__remove" @click="remove(option)">❌</span></span></template>
-                        <span slot="noResult">No se encontraron elementos. Considere cambiar la consulta de búsqueda.</span>
+                        <span slot="noResult">No se encontraron elementos. hol cambiar la consulta de búsqueda.</span>
                     </multiselect>
                 </div>
                     <!-- <pre class="language-json"><code>{{ selectcliente  }}</code></pre> -->
@@ -48,7 +48,7 @@
             </div>
             <div class="col-md-3">
                 <div>
-                    <label class="typo__label text-white">Forma de pago</label>
+                    <label class="typo__label text-white">Forma de pgo</label>
                     <multiselect v-model="selectpago" :options="optionsPagos" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Elige un valor"></multiselect>
                 </div>
 
@@ -79,7 +79,7 @@
                     </div> -->
                     <div class="col text-left">
                         <h1 class="titleh1 m-0">
-                            <a href="/ventas" class="btn btn-primary btn-lg">Volver</a> NUEVA VENTA</h1>
+                            <a href="/ventas" class="btn btn-primary btn-lg">Volver</a> NUEVA entrada</h1>
                             <!-- <a href="javascript:history.go(-1)" class="btn btn-primary btn-lg">Volver</a> NUEVA VENTA</h1> -->
                     </div>
                     <!-- <div class="col text-right">

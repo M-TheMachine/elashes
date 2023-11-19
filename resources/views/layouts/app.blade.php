@@ -1,23 +1,61 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="csrf_token()">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Nombre de la Aplicación</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="js/app.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <style>
+        .navbar-custom {
+            background-color: black;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+        }
+        .navbar-custom .navbar-brand {
+            color: white;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .navbar-custom {
+            background-color: black;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+        }
+        .navbar-custom .navbar-brand {
+            color: white;
+        }
+        .navbar-toggler-icon {
+            /* [Estilo del ícono del menú] */
+        }
+
+        /* Estilos para el menú desplegable */
+        .navbar-custom .dropdown-menu {
+            background-color: black; /* Fondo negro */
+        }
+        .navbar-custom .dropdown-menu .dropdown-item {
+            color: white; /* Texto blanco */
+        }
+        .navbar-custom .dropdown-menu .dropdown-item:hover {
+            background-color: #505050; /* Fondo gris al pasar el ratón */
+        }
+    </style>
 </head>
 @if (request()->is('login'))
 <body style="background: url(/images/fondo.jpg) no-repeat 50% fixed;background-size: cover;">
@@ -28,309 +66,66 @@
     </div>
 </body>
 @else
-<body class="fondo1 {{ Route::has('login') ? 'navbodyfloat' : '' }}">
+<body class="bg-black">
     <div id="app" class="w-auto h-75">
-            <nav class="navbar navbar-expand-md navbar-light fixed-top bg-nav shadow-sm">
-                <div class="container">
-                    @if (!request()->is('home'))
-                        <span style="font-size:30px;cursor:pointer" class="text-white" onclick="openNav()">&#9776; MENU</span>
-                    @endif
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        <img class="img-fluid" src="{{ asset('images/logo.png') }}" width="100px" alt="">
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <i class="bi bi-person-circle menuuser"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand" href="/home">
+                    <img src="/images/logo.png" alt="Logo" style="height: 60px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Dropdown principal -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="navbar-toggler-icon"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+                                @php $rol = auth()->user()->rol; @endphp
+                                @if(in_array($rol, ['root', 'admin', 'vendedor']))
+                                    <a class="dropdown-item" href="/clientes">Clientes</a>
                                 @endif
-
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
+                                @if(in_array($rol, ['root', 'admin']))
+                                    <a class="dropdown-item" href="/servicios">Servicios</a>
+                                    <a class="dropdown-item" href="/categorias">Categorías</a>
+                                    <a class="dropdown-item" href="/reportes">Reportes</a>
+                                    <a class="dropdown-item" href="/usuarios">Usuarios</a>
+                                    <a class="dropdown-item" href="/pagos">Pagos</a>
+                                    <a class="dropdown-item" href="/ventas">Ventas</a>
                                 @endif
-                            @else
-                                {{-- <li class="nav-item">
-                                    <a id="msucursal" class="nav-link text-white" style="font-size: 25px;" href="javascript:void(0)"
-                                    data-backdrop="static" data-toggle="modal" data-target="#sucursalModalCenter">{{ __('Sucursal') }}</a>
-                                </li> --}}
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" style="font-size: 25px;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->nombre }}
-                                    </a>
+                                @if($rol == 'root')
+                                    <a class="dropdown-item" href="/sucursales">Sucursales</a>
+                                @endif
+                                @if(in_array($rol, ['root', 'admin', 'vendedor', 'operador']))
+                                    <a class="dropdown-item" href="/recordatorios">Recordatorios</a>
+                                    <a class="dropdown-item" href="/nuevaventa">Nueva Venta</a>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Cerrar Sesión
+                                </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" style="font-size: 20px" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
         <main class="d-flex h-100 w-100">
             @yield('content')
         </main>
     </div>
     @if (Auth::check())
-        <div class="modal fade" id="sucursalModalCenter" tabindex="-1" role="dialog" aria-labelledby="sucursalModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form method="POST" action="{{ url('selectsucursal') }}">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Sucursal</h5>
-                        {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button> --}}
-                    </div>
-                    <div class="modal-body">
-                        @foreach (auth()->user()->sucursals as $item)
-                            <div class="custom-control custom-radio">
-                                <input checked type="radio" value="{{ $item->id }}" id="sucursal{{ $item->id }}" name="sucursal_id" class="custom-control-input" {{ session()->has('sucursal_id') && (session('sucursal_id') == $item->id) ? 'checked' : '' }} required>
-                                <label class="custom-control-label" for="sucursal{{ $item->id }}">{{ $item->nombre }}</label>
-                            </div>
-                        @endforeach
-
-                        {{-- <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
-                        </div> --}}
-                    </div>
-                    <div class="modal-footer">
-                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                    </div>
-                </form>
-            </div>
-            </div>
-        </div>
-        <script>
-            // window.User = {
-            //     id: {{ optional(auth()->user())->id }},
-            //     avatar: '{{ optional(auth()->user())->nombre }}',
-            // }
-            if ({{ optional(auth()->user())->id }} && {{ (session('sucursal_id') ? 'false' : 'true') }}) {
-                console.log("true auth");
-                // $("#msucursal").trigger("click");
-                // setTimeout(() => {
-                //     document.getElementById('msucursal').click();
-                // }, 1000);
-
-            }
-        </script>
-        {{-- <script>
-            $( document ).ready(function() {
-                if(JSON.parse("{!! json_encode(Auth::check()) !!}"){
-                    // var jobs = JSON.parse("{!! json_encode(Auth::user->sucursals) !!}");
-                    // console.log(jobs);
-                    $("#msucursal").trigger("click");
-                    console.log('auth');
-
-                }else{
-                    console.log('not auth');
-                }
-            });
-        </script> --}}
+    <!-- Scripts para funciones adicionales -->
     @endif
-
-
-    <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-            <div class="container d-flex">
-                <div class="row justify-content-center m-auto">
-                    @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin')
-                        <div class="col-md-4 mt-4">
-
-                            <a href="{{ url('clientes') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/1.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">CLIENTES</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-                    @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin')
-
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('servicios') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/2.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">SERVICIOS</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('categorias') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/3.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">CATEGORÍAS</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-                    @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin' || auth()->user()->rol == 'supervisor')
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('reportes') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/reportes.png') }}" class="w-100 br20" alt="">
-                                    
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-                    {{-- @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin' || auth()->user()->rol == 'supervisor')
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('sucursales') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/4.jpg') }}" class="w-100 br20" alt="">
-                                    
-                                </div>
-                            </a>
-                        </div>
-                    @endif --}}
-
-
-                    @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin')
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('usuarios') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/5.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">USUARIOS</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-
-            {{--
-                    <div class="col-md-4 mt-4">
-                        <a href="{{ url('') }}">
-                            <div class="card br20">
-                                <img src="{{ asset('images/6.jpg') }}" class="w-100 br20" alt="">
-                            </div>
-                        </a>
-                    </div> --}}
-
-                    @if (auth()->user()->rol == 'root' || auth()->user()->rol == 'admin' || auth()->user()->rol == 'supervisor' || auth()->user()->rol == 'secretario')
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('ventas') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/7.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">REPORTES</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('nuevaventa') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/10.png') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">REPORTES</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('pagos') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/9.png') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">REPORTES</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-4 mt-4">
-                            <a href="{{ url('recordatorios') }}">
-                                <div class="card br20">
-                                    <img src="{{ asset('images/8.jpg') }}" class="w-100 br20" alt="">
-                                    {{-- <i class="bi bi-people card-img" style="font-size: 120px;"></i>
-                                    <div class="card-img-overlay">
-                                    <h5 class="card-title">REPORTES</h5>
-                                    </div> --}}
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-                    {{-- <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">{{ __('Dashboard') }}</div>
-
-                            <div class="card-body">
-                                @if (session('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
-
-                                {{ __('You are logged in!') }}
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
-          {{-- <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a> --}}
-        </div>
-      </div>
-
-    <script>
-        function openNav() {
-          document.getElementById("myNav").style.width = "100%";
-        }
-
-        function closeNav() {
-          document.getElementById("myNav").style.width = "0%";
-        }
-     </script>
 </body>
 @endif
 </html>

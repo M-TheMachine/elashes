@@ -43,7 +43,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">" "</th>
+                                <th scope="col">Acción</th>
 
                             </tr>
                         </thead>
